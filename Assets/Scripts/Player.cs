@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
 
     private bool grounded;
     private bool climbing;
-
+    [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource finish;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -119,11 +120,13 @@ private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Objective"))
         {
+            finish.Play();
             enabled = false;
             FindObjectOfType<GameManager>().LevelComplete();
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
+            deathSound.Play();
             enabled = false;
             FindObjectOfType<GameManager>().LevelFailed();
         }

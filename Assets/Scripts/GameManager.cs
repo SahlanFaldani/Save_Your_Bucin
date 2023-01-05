@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void NewGame()
     {
-        lives = 3;
+        lives = 4;
         score = 0;
 
         LoadLevel(1);
